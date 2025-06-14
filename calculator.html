@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0D111B;
+      color: #fff;
+    }
+
+    .calculator {
+      width: 320px;
+      padding: 20px;
+      border-radius: 20px;
+      background: #1A2238;
+      margin: 100px auto;
+      text-align: center;
+      transform: translateY(0);
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .calculator:hover {
+      transform: translateY(-10px);
+    }
+
+    .calculator input {
+      width: 90%;
+      padding: 20px;
+      font-size: 1.7em;
+      margin-bottom: 20px;
+      text-align: right;
+      border: none;
+      border-radius: 15px;
+      background: #0D111B;
+      color: #fff;
+      box-shadow: 0 5px 20px rgb(0 0 0 / 0.5);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .calculator input:focus {
+      outline: none;
+      box-shadow: 0 10px 30px #3B82F6;
+      transform: translateY(-5px);
+    }
+
+    .calculator .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calculator .grid button {
+      padding: 20px;
+      font-size: 1.2em;
+      background: #1E3A5F;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      transition: transform 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .calculator .grid button:hover {
+      transform: translateY(-5px);
+      background: #3B82F6;
+    }
+
+    .calculator .grid button:active {
+      transform: translateY(0);
+      background: #2563EB;
+    }
+
+    .calculator .grid .equals {
+      grid-column: span 2;
+      background: #3B82F6;
+    }
+
+    .calculator .grid .equals:hover {
+      background: #2563EB;
+    }
+
+    .calculator .grid .clear {
+      background: #E11D48;
+      grid-column: span 3;
+    }
+
+    .calculator .grid .clear:hover {
+      background: #BE123C;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <input id="calc-display" disabled /><br/>
+
+    <div class="grid">
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="appendToDisplay('+')">+</button>
+
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="appendToDisplay('-')">-</button>
+
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="appendToDisplay('*')">*</button>
+
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="appendToDisplay('.')">.</button>
+      <button class="equals" onclick="calculate()">=</button>
+      <button onclick="appendToDisplay('/')">/</button>
+
+      <button class="clear" onclick="clearDisplay()">Clear</button>
+    </div>
+  </div>
+
+<script>
+  function appendToDisplay(val) {
+    document.getElementById('calc-display').value += val;
+  }
+
+  function clearDisplay(){
+    document.getElementById('calc-display').value = '';
+  }
+
+  function calculate(){
+    try {
+      document.getElementById('calc-display').value = eval(document.getElementById('calc-display').value);
+    } catch (error) {
+      alert('Invalid expression');
+    }
+  }
+</script>
+
+</body>
+</html>
